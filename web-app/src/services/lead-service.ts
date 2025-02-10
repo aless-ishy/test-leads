@@ -1,5 +1,6 @@
-import { ILead } from '../interfaces/lead-interface';
-import { api } from './api';
+import { ILead } from '@/interfaces/lead-interface';
+import { api } from '@/services/api';
+
 
 export const acceptLead = async (id: number) => {
   await api.post('/api/lead/accept', { id });

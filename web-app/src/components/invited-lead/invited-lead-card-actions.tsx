@@ -1,12 +1,16 @@
-import Typography from '@mui/material/Typography';
-import { ILead } from '../../interfaces/lead-interface';
-import CardActions from '@mui/material/CardActions';
-import * as React from 'react';
-import { acceptLead, declineLead, getLeads } from '../../services/lead-service';
 import Button from '@mui/material/Button';
-import { textSxProps } from '../sx-props';
-import { ServerError } from '../error/server-error';
-import { LeadContext } from '../../contexts/lead-context';
+import CardActions from '@mui/material/CardActions';
+import Typography from '@mui/material/Typography';
+import { AxiosError, isAxiosError } from 'axios';
+import * as React from 'react';
+
+import { ServerError } from '@/components/error/server-error';
+import { textSxProps } from '@/components/sx-props';
+import { LeadContext } from '@/contexts/lead-context';
+import { IServerError } from '@/interfaces/error-interface';
+import { ILead } from '@/interfaces/lead-interface';
+import { acceptLead, declineLead, getLeads } from '@/services/lead-service';
+
 
 type InvitedLeadCardActionsProps = { lead: ILead };
 export function InvitedLeadCardActions({ lead }: InvitedLeadCardActionsProps) {
@@ -21,8 +25,9 @@ export function InvitedLeadCardActions({ lead }: InvitedLeadCardActionsProps) {
     acceptLead(lead.id)
       .then(() => getLeads(selectedTab))
       .then((data) => setLeads(data))
-      .catch(() => {
-        setServerError('Erro inesperado.');
+      .catch((error: AxiosError<IServerError>) => {
+        const errorMessage = isAxiosError(error) ? error.response?.data?.message : '';
+        setServerError(errorMessage || 'Erro inesperado.');
       })
       .finally(() => setLoadingAccept(false));
   };
@@ -30,12 +35,13 @@ export function InvitedLeadCardActions({ lead }: InvitedLeadCardActionsProps) {
   const handleDecline = () => {
     setLoadingDecline(true);
     declineLead(lead.id)
-    .then(() => getLeads(selectedTab))
-    .then((data) => setLeads(data))
-    .catch(() => {
-      setServerError('Erro inesperado.');
-    })
-    .finally(() => setLoadingDecline(false));
+      .then(() => getLeads(selectedTab))
+      .then((data) => setLeads(data))
+      .catch((error: AxiosError<IServerError>) => {
+        const errorMessage = isAxiosError(error) ? error.response?.data?.message : '';
+        setServerError(errorMessage || 'Erro inesperado.');
+      })
+      .finally(() => setLoadingDecline(false));
   };
 
   const isLoading = loadingAccept || loadingDecline;

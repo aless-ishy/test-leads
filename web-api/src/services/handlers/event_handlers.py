@@ -14,7 +14,7 @@ def publish_accept_lead(event: lead_events.AcceptedLeadEvent, unit_of_work: Abst
     unit_of_work.leads.save(event.id, price=event.price, status=LeadStatusEnum.ACCEPTED.value)
 
 
-def accept_lead_send_email(event: lead_events.AcceptedLeadSendEmailEvent, _: AbstractUnitOfWork):
+def accepted_lead_send_email(event: lead_events.AcceptedLeadSendEmailEvent, _: AbstractUnitOfWork):
     send_email("vendas@test.com", f"Lead {event.id} accepted")
 
 
@@ -30,7 +30,7 @@ EVENT_HANDLERS = {
     lead_events.AcceptedLeadEvent: [
         publish_accept_lead,
         update_lead_status_to_accepted_in_read_model,
-        accept_lead_send_email,
+        accepted_lead_send_email,
     ],
     lead_events.DeclinedLeadEvent: [
         publish_decline_lead,

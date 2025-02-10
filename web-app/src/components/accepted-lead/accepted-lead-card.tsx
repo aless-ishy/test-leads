@@ -1,9 +1,10 @@
 import Card from '@mui/material/Card';
-import { ILead } from '../../interfaces/lead-interface';
 import Divider from '@mui/material/Divider';
-import { AcceptedLeadCardContactCardSection } from './accepted-lead-contact-card-section';
-import { LeadCardHead } from '../lead-card-head';
-import { AcceptedLeadCardSummaryCardSection } from './accepted-lead-summary-card-section';
+
+import { AcceptedLeadCardContactCardSection } from '@/components/accepted-lead/accepted-lead-contact-card-section';
+import { AcceptedLeadCardSummaryCardSection } from '@/components/accepted-lead/accepted-lead-summary-card-section';
+import { LeadCardHead } from '@/components/lead-card-head';
+import { ILead } from '@/interfaces/lead-interface';
 
 type AcceptedLeadCardCardProps = { lead: ILead };
 export function AcceptedLeadCard({ lead }: AcceptedLeadCardCardProps) {

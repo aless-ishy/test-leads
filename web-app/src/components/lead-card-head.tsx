@@ -1,7 +1,9 @@
-import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
-import { red, blue, green, orange, purple, yellow, grey } from '@mui/material/colors';
-import { ILead } from '../interfaces/lead-interface';
+import CardHeader from '@mui/material/CardHeader';
+import { blue, green, grey, orange, purple, red, yellow } from '@mui/material/colors';
+
+import { ILead } from '@/interfaces/lead-interface';
+
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const rightZeros = (value: number, minSize: number) => {

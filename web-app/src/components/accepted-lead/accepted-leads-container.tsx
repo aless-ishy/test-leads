@@ -1,7 +1,9 @@
-import { ILead } from '../../interfaces/lead-interface';
 import Box from '@mui/material/Box';
-import { AcceptedLeadCard } from './accepted-lead-card';
-import { containerSxProps } from '../sx-props';
+
+import { AcceptedLeadCard } from '@/components/accepted-lead/accepted-lead-card';
+import { containerSxProps } from '@/components/sx-props';
+import { ILead } from '@/interfaces/lead-interface';
+
 
 type AcceptedLeadsContainerProps = { leads: ILead[] };
 

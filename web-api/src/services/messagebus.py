@@ -28,7 +28,7 @@ def handle_event(event: Event, queue: List[Message], unit_of_work: AbstractUnitO
             handler(event, unit_of_work)
             queue.extend(unit_of_work.collect_new_events())
         except Exception:
-            continue
+            raise
 
 
 def handle_command(command: Command, queue: List[Message], unit_of_work: AbstractUnitOfWork):

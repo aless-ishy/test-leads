@@ -1,12 +1,12 @@
-import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-
 import { grey } from '@mui/material/colors';
-import { LeadContext } from './contexts/lead-context';
-import { ServerError } from './components/error/server-error';
-import { LeadsContainer } from './components/leads-container';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import * as React from 'react';
+
+import { ServerError } from '@/components/error/server-error';
+import { LeadsContainer } from '@/components/leads-container';
+import { LeadContext } from '@/contexts/lead-context';
 
 export default function App() {
   const { serverError, selectedTab, loading, leads, setSelectedTab } = React.useContext(LeadContext);

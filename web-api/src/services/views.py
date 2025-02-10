@@ -1,9 +1,9 @@
 from domain.models.lead import LeadStatusEnum
-from infra.database.repositories.lead_view_repository import LeadViewRepository
+from domain.repositories.abstract_unit_of_work import AbstractUnitOfWork
 
 
-def invited_leads():
-    return LeadViewRepository().get_all(status=None)
+def invited_leads(unit_of_work: AbstractUnitOfWork):
+    return unit_of_work.leads_view.get_all(status=None)
 
-def accepted_leads():
-    return LeadViewRepository().get_all(status=LeadStatusEnum.ACCEPTED.value)
+def accepted_leads(unit_of_work: AbstractUnitOfWork):
+    return unit_of_work.leads_view.get_all(status=LeadStatusEnum.ACCEPTED.value)

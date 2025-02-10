@@ -1,4 +1,4 @@
-from sqlalchemy import select, update
+from sqlalchemy import select, update, desc
 
 from domain.models.lead import Lead
 from domain.repositories.lead_view_abstract_repository import LeadViewAbstractRepository
@@ -7,7 +7,7 @@ from infra.database.orm import SessionLocal
 
 
 class LeadViewRepository(LeadViewAbstractRepository):
-    def __init__(self, session = SessionLocal):
+    def __init__(self, session=SessionLocal):
         super().__init__()
         self.session = session()
 
@@ -17,7 +17,7 @@ class LeadViewRepository(LeadViewAbstractRepository):
         return None
 
     def get_all(self, status) -> [Lead]:
-        leads = select(LeadViewEntity).where(LeadViewEntity.status == status)
+        leads = select(LeadViewEntity).where(LeadViewEntity.status == status).order_by(desc(LeadViewEntity.id))
         return list(map(map_lead_view, self.session.scalars(leads)))
 
     def save(self, lead_id, **data):

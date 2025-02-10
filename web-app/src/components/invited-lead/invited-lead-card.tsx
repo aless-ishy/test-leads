@@ -1,13 +1,13 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
-import { ILead } from '../../interfaces/lead-interface';
-import Divider from '@mui/material/Divider';
-import { InvitedLeadCardSummaryCardSection } from './invited-lead-summary-card-section';
-import { InvitedLeadCardActions } from './invited-lead-card-actions';
-import { LeadCardHead } from '../lead-card-head';
-import { textSxProps } from '../sx-props';
+import { InvitedLeadCardActions } from '@/components/invited-lead/invited-lead-card-actions';
+import { InvitedLeadCardSummaryCardSection } from '@/components/invited-lead/invited-lead-summary-card-section';
+import { LeadCardHead } from '@/components/lead-card-head';
+import { textSxProps } from '@/components/sx-props';
+import { ILead } from '@/interfaces/lead-interface';
 
 type InvitedLeadCardCardProps = { lead: ILead };
 export function InvitedLeadCard({ lead }: InvitedLeadCardCardProps) {

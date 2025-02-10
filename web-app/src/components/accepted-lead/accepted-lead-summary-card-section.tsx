@@ -1,10 +1,12 @@
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { ILead } from '../../interfaces/lead-interface';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import Box from '@mui/material/Box';
-import { itemSxProps, sectionSxProps, textSxProps } from '../sx-props';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+
+import { itemSxProps, sectionSxProps, textSxProps } from '@/components/sx-props';
+import { ILead } from '@/interfaces/lead-interface';
+
 
 type AcceptedLeadCardSummaryCardSectionProps = { lead: ILead };
 export function AcceptedLeadCardSummaryCardSection({ lead }: AcceptedLeadCardSummaryCardSectionProps) {

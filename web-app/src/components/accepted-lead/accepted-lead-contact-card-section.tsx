@@ -1,10 +1,11 @@
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { ILead } from '../../interfaces/lead-interface';
-import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import Box from '@mui/material/Box';
-import { fullWidthItemSxProps, itemSxProps, sectionSxProps, textSxProps } from '../sx-props';
+
+import { fullWidthItemSxProps, itemSxProps, sectionSxProps, textSxProps } from '@/components/sx-props';
+import { ILead } from '@/interfaces/lead-interface';
 
 type AcceptedLeadCardContactCardSectionProps = { lead: ILead };
 export function AcceptedLeadCardContactCardSection({ lead }: AcceptedLeadCardContactCardSectionProps) {

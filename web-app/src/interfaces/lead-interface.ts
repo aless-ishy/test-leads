@@ -1,4 +1,4 @@
-import { IContact } from './contact-interface';
+import { IContact } from '@/interfaces/contact-interface';
 
 export interface ILead {
   id: number;

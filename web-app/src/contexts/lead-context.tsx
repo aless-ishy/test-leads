@@ -1,6 +1,9 @@
+import { AxiosError, isAxiosError } from 'axios';
 import * as React from 'react';
-import { ILead } from '../interfaces/lead-interface';
-import { getLeads } from '../services/lead-service';
+
+import { IServerError } from '@/interfaces/error-interface';
+import { ILead } from '@/interfaces/lead-interface';
+import { getLeads } from '@/services/lead-service';
 
 type LeadContextValues = {
   selectedTab: 'invited' | 'accepted';
@@ -38,7 +41,10 @@ export const LeadContextProvider = ({ children }: LeadContextProviderProps) => {
         setServerError('');
         setLeads(data);
       })
-      .catch(() => setServerError('Erro inesperado'))
+      .catch((error: AxiosError<IServerError>) => {
+        const errorMessage = isAxiosError(error) ? error.response?.data?.message : '';
+        setServerError(errorMessage || 'Erro inesperado.');
+      })
       .finally(() => setLoading(false));
   }, [selectedTab]);
 

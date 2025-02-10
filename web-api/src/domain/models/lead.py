@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
 
+from domain.commands.command import CommandException
 from domain.events import lead_events
 from domain.models.contact import Contact
 
@@ -37,18 +38,17 @@ class Lead:
         return self.price > 500
 
     def apply_discount(self):
-        self.price = float(round(self.price * 0.9, 2))
+        return float(round(self.price * 0.9, 2))
 
     def accept(self):
-        ## if not self.can_change_status_to_accept(): raise Exception("Lead inapto para alteracão do status.")
-
-        if self.can_give_discount(): self.apply_discount()
-        accept_event = lead_events.AcceptedLeadEvent(id=self.id, price=self.price)
+        if not self.can_change_status_to_accept(): raise CommandException("Lead inapto para alteracão do status.")
+        price = self.price
+        if self.can_give_discount(): price = self.apply_discount()
+        accept_event = lead_events.AcceptedLeadEvent(id=self.id, price=price)
         return [accept_event]
 
     def decline(self):
-        ## if not self.can_change_status_to_decline(): raise Exception("Lead inapto para alteracão do status.")
-
+        if not self.can_change_status_to_decline(): raise CommandException("Lead inapto para alteracão do status.")
         decline_event = lead_events.DeclinedLeadEvent(id=self.id)
         return [decline_event]
 

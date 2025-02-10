@@ -1,7 +1,8 @@
-import Typography from '@mui/material/Typography';
-import { fullWidthItemSxProps } from '../sx-props';
-import Box from '@mui/material/Box';
 import ErrorIcon from '@mui/icons-material/Error';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
+import { fullWidthItemSxProps } from '@/components/sx-props';
 
 type ServerErrorProps = { message: string };
 export const ServerError = (props: ServerErrorProps) => {

@@ -1,18 +1,19 @@
 import Box from '@mui/material/Box';
-import { ILead } from '../interfaces/lead-interface';
-import { LeadContext } from '../contexts/lead-context';
-import * as React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
-import { InvitedLeadsContainer } from './invited-lead/invited-leads-container';
-import { AcceptedLeadsContainer } from './accepted-lead/accepted-leads-container';
-import { containerLoadingSxProps } from './sx-props';
+import * as React from 'react';
+
+import { AcceptedLeadsContainer } from '@/components/accepted-lead/accepted-leads-container';
+import { InvitedLeadsContainer } from '@/components/invited-lead/invited-leads-container';
+import { containerLoadingSxProps } from '@/components/sx-props';
+import { LeadContext } from '@/contexts/lead-context';
+import { ILead } from '@/interfaces/lead-interface';
 
 type LeadsContainerProps = { leads: ILead[] };
 
 export const LeadsContainer = (props: LeadsContainerProps) => {
   const { leads } = props;
   const { loading, selectedTab } = React.useContext(LeadContext);
-
+  
   return (
     <>
       <Box role="tabpanel" hidden={selectedTab !== 'invited'} id="invited-leads-tabpanel" aria-labelledby="invited-leads-tab">
