@@ -2,13 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime
-from enum import Enum
 from domain.models.contact import Contact
-
-
-class LeadStatusEnum(Enum):
-    ACCEPTED = "Accepted"
-    DECLINED = "Declined"
 
 
 @dataclass(unsafe_hash=True)
