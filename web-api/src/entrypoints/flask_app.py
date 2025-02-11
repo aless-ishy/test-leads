@@ -10,6 +10,7 @@ from services import messagebus, views
 app = Flask(__name__)
 CORS(app)
 
+
 @app.route("/api/lead/decline", methods=["POST"])
 def decline_lead():
     try:
@@ -17,8 +18,10 @@ def decline_lead():
         unit_of_work = SqlAlchemyUnitOfWork()
         messagebus.handle(command, unit_of_work)
     except Exception as exception:
-        if isinstance(exception, CommandException): return dict(message=str(exception)), 400
-        else : return dict(message="Um erro inesperado aconteceu."), 500
+        if isinstance(exception, CommandException):
+            return dict(message=str(exception)), 400
+        else:
+            return dict(message="Um erro inesperado aconteceu."), 500
     return '', 204
 
 
@@ -29,8 +32,10 @@ def accept_lead():
         unit_of_work = SqlAlchemyUnitOfWork()
         messagebus.handle(command, unit_of_work)
     except Exception as exception:
-        if isinstance(exception, CommandException): return dict(message=str(exception)), 400
-        else : return dict(message="Um erro inesperado aconteceu."), 500
+        if isinstance(exception, CommandException):
+            return dict(message=str(exception)), 400
+        else:
+            return dict(message="Um erro inesperado aconteceu."), 500
     return '', 204
 
 
@@ -42,7 +47,8 @@ def view_invited_leads():
         dict_list = list(map(lambda lead: lead.to_dict(), result))
         return jsonify(dict_list), 200
     except Exception:
-        dict(message="Um erro inesperado aconteceu."), 500
+        return dict(message="Um erro inesperado aconteceu."), 500
+
 
 @app.route("/api/view/leads/accepted", methods=["GET"])
 def view_accepted_leads():
@@ -52,8 +58,8 @@ def view_accepted_leads():
         dict_list = list(map(lambda lead: lead.to_dict(), result))
         return jsonify(dict_list), 200
     except Exception:
-        dict(message="Um erro inesperado aconteceu."), 500
+        return dict(message="Um erro inesperado aconteceu."), 500
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=API_PORT,host=API_HOST)
+    app.run(debug=True, port=API_PORT, host=API_HOST)

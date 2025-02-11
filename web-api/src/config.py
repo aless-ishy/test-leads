@@ -5,17 +5,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_PORT = int(os.environ.get("API_PORT", 5005))
-API_HOST = os.environ.get("API_HOST", "localhost")
-DATABASE_NAME = os.environ.get("DATABASE_NAME", "DATABASE_TEST")
-CREATE_TABLE = False if os.environ.get("CREATE_TABLE", 'False') == 'False' else True
+API_PORT = int(os.environ.get("API_PORT", 5050))
+API_HOST = os.environ.get("API_HOST", "0.0.0.0")
+DATABASE_NAME = os.environ.get("DATABASE_NAME", "test_lead_database")
+CREATE_TABLE = False if os.environ.get("CREATE_TABLE", 'True') == 'False' else True
 
 
 def get_sql_server_uri():
     database_host = os.environ.get("DATABASE_HOST", "localhost")
     database_port = int(os.environ.get("DATABASE_PORT", 1433))
     database_username = os.environ.get("DATABASE_USERNAME", "sa")
-    database_password = quote(os.environ.get("DATABASE_PASSWORD", ""))
+    database_password = quote(os.environ.get("DATABASE_PASSWORD", "yourStrong(!)Password"))
     database_name = DATABASE_NAME
     return f"mssql+pyodbc://{database_username}:{database_password}@{database_host}:{database_port}/{database_name}?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes"
 
@@ -24,7 +24,7 @@ def get_sql_server_pyodbc_uri():
     database_host = os.environ.get("DATABASE_HOST", "localhost")
     database_port = int(os.environ.get("DATABASE_PORT", 1433))
     database_username = os.environ.get("DATABASE_USERNAME", "sa")
-    database_password = os.environ.get("DATABASE_PASSWORD", "")
+    database_password = os.environ.get("DATABASE_PASSWORD", "yourStrong(!)Password")
     database_name = "master"
     return f'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={database_host}, {database_port};DATABASE={database_name};UID={database_username};PWD={database_password}; TrustServerCertificate=yes;'
 
