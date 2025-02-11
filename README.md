@@ -17,7 +17,7 @@ A aplicação foi desenvolvida utilizando o **python 3.12**, utilize essa versã
 
 É altamente recomendado que utilize a IDE PyCharm para uma instalação e execução mais fácil. Caso utilize, basta marcar a pasta **src** como **Source Root** e executar o arquivo **src/entrypoints/flask_app.py** a partir da IDE.
 
-Configure o **PYTHONPATH** para **"/app/src"**. 
+Configure o **PYTHONPATH** para a pasta **"/src"**. 
 Dentro da pasta web-api, crie um arquivo **.env** de acordo com arquivo **.env.example**, as váriaveis que iniciam com **DATABASE** devem ser preenchidas com os dados do seu banco de dados.
 ```
 pip install -r requirements.txt
