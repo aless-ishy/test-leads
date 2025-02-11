@@ -7,7 +7,6 @@ from domain.commands.command import Command
 class AcceptLeadCommand(Command):
     id: int
 
-
 @dataclass
 class DeclineLeadCommand(Command):
     id: int

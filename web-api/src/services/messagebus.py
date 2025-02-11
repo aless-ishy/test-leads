@@ -27,6 +27,7 @@ def handle_event(event: Event, queue: List[Message], unit_of_work: AbstractUnitO
         try:
             handler(event, unit_of_work)
             queue.extend(unit_of_work.collect_new_events())
+            unit_of_work.commit_event(event, handler.__name__)
         except Exception:
             raise
 

@@ -3,6 +3,7 @@ import { grey } from '@mui/material/colors';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import * as React from 'react';
+import '@/index.css'
 
 import { ServerError } from '@/components/error/server-error';
 import { LeadsContainer } from '@/components/leads-container';

@@ -14,3 +14,6 @@ class AbstractUnitOfWork(abc.ABC):
     def collect_new_events(self):
         while self.events:
             yield self.events.pop(0)
+
+    def commit_event(self, event: Event, handler_name: str):
+        pass

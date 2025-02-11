@@ -7,7 +7,7 @@ load_dotenv()
 
 API_PORT = int(os.environ.get("API_PORT", 5050))
 API_HOST = os.environ.get("API_HOST", "0.0.0.0")
-DATABASE_NAME = os.environ.get("DATABASE_NAME", "test_lead_database")
+DATABASE_NAME = os.environ.get("DATABASE_NAME", "lead_test")
 CREATE_TABLE = False if os.environ.get("CREATE_TABLE", 'True') == 'False' else True
 
 
@@ -39,3 +39,8 @@ def get_redis_host_and_port():
     redis_host = os.environ.get("REDIS_HOST", "localhost")
     redis_port = int(os.environ.get("REDIS_PORT", 63791))
     return dict(host=redis_host, port=redis_port)
+
+def get_esdb_client_uri():
+    esdb_host = os.environ.get("EVENT_STORE_HOST", "localhost")
+    esdb_port = int(os.environ.get("EVENT_STORE_HTTP_PORT", 2113))
+    return f"esdb://{esdb_host}:{esdb_port}?Tls=false"

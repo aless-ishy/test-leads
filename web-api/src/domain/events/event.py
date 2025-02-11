@@ -1,2 +1,8 @@
+import abc
+
+
 class Event:
-    pass
+
+    @abc.abstractmethod
+    def to_json_byte(self, **extra_data):
+        return b"{}"
