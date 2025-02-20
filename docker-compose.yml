@@ -28,12 +28,7 @@ services:
       - FLASK_ENV=development
     # command: uwsgi --http 0.0.0.0:5050 --master -p 1 -w entrypoints.flask_app:app
     command: python src/entrypoints/flask_app.py
-    deploy:
-      restart_policy:
-          condition: on-failure
-          delay: 5s
-          max_attempts: 3
-          window: 120s
+    restart: always
 
   data_generator:
     build:
@@ -52,12 +47,7 @@ services:
       - API_PORT=5050
       - GENERATOR_FREQUENCY=${GENERATOR_FREQUENCY:-10}
     command: python src/entrypoints/populate_database.py
-    deploy:
-      restart_policy:
-          condition: on-failure
-          delay: 5s
-          max_attempts: 3
-          window: 120s
+    restart: always
 
   app:
     depends_on:
@@ -67,9 +57,4 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:80
-    deploy:
-      restart_policy:
-          condition: on-failure
-          delay: 5s
-          max_attempts: 3
-          window: 120s
+    restart: always
